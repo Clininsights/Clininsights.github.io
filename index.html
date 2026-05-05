@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ClinInsight — Physician Insights. Better Decisions.</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-19EN9K63BP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-19EN9K63BP');
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -31,8 +39,17 @@
     border: 1px solid rgba(42,157,143,0.12);
     top: -120px; right: -100px;
   }
-  .logo-text { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--white); margin-bottom: 6px; animation: fadeUp 0.6s ease both; }
-  .logo-text span { color: var(--teal-light); }
+
+  /* Logo image in hero */
+  .hero-logo-img {
+    width: 180px;
+    max-width: 60vw;
+    margin: 0 auto 20px;
+    display: block;
+    animation: fadeUp 0.5s ease both;
+    filter: brightness(0) invert(1); /* make it white on dark bg */
+  }
+
   .logo-sub { font-size: 0.7rem; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 32px; animation: fadeUp 0.6s 0.1s ease both; }
   .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.7rem, 4vw, 2.5rem); color: var(--white); line-height: 1.3; max-width: 600px; margin: 0 auto 14px; animation: fadeUp 0.6s 0.15s ease both; }
   .hero h1 em { font-style: normal; color: var(--teal-light); }
@@ -50,6 +67,14 @@
   .card p { font-size: 0.93rem; color: var(--gray); line-height: 1.8; }
   .card p + p { margin-top: 10px; }
   .card p strong { color: var(--navy); }
+
+  /* Banner image */
+  .banner-img {
+    width: 100%;
+    border-radius: 14px;
+    margin-top: 18px;
+    display: block;
+  }
 
   .format-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
   @media (max-width: 500px) { .format-grid { grid-template-columns: 1fr; } }
@@ -81,18 +106,46 @@
   .privacy-list li .icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
   .privacy-list li strong { color: white; }
 
+  /* Contact card with LINE & Facebook */
   .contact-card { background: var(--white); border: 1px solid var(--light-gray); border-radius: 18px; padding: 30px; margin-top: 24px; text-align: center; }
   .contact-card h2 { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--navy); margin-bottom: 10px; }
-  .contact-card p { font-size: 0.88rem; color: var(--gray); line-height: 1.75; max-width: 400px; margin: 0 auto; }
+  .contact-card p { font-size: 0.88rem; color: var(--gray); line-height: 1.75; max-width: 400px; margin: 0 auto 20px; }
+  .social-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .social-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 22px; border-radius: 100px;
+    font-size: 0.88rem; font-weight: 600;
+    text-decoration: none; transition: transform 0.15s, box-shadow 0.15s;
+    font-family: 'Sarabun', sans-serif;
+  }
+  .social-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+  .social-btn.line {
+    background: #06C755; color: white;
+  }
+  .social-btn.facebook {
+    background: #1877F2; color: white;
+  }
+  .social-btn svg { width: 18px; height: 18px; fill: white; flex-shrink: 0; }
 
   footer { text-align: center; padding: 28px 24px; color: var(--gray); font-size: 0.8rem; border-top: 1px solid var(--light-gray); }
   footer strong { color: var(--navy); }
+  .footer-logo { width: 100px; margin: 0 auto 12px; display: block; opacity: 0.6; }
 </style>
 </head>
 <body>
 
 <div class="hero">
-  <div class="logo-text">Clin<span>Insight</span></div>
+  <!-- Logo image -->
+  <img
+    src="assets/ClinInsights.png"
+    alt="ClinInsight"
+    class="hero-logo-img"
+    onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';"
+  />
+  <!-- Fallback text logo if image fails -->
+  <div id="fallback-logo" style="display:none;">
+    <div style="font-family:'Playfair Display',serif;font-size:2rem;color:#fff;margin-bottom:6px;">Clin<span style="color:#3ebdb0;">Insight</span></div>
+  </div>
   <div class="logo-sub">Physician Insights · Better Decisions</div>
   <h1>ยินดีต้อนรับสู่<br><em>ClinInsight</em></h1>
   <p class="hero-sub">แพลตฟอร์มเชื่อมต่อบุคลากรทางการแพทย์กับโปรเจควิจัยการตลาดด้านสุขภาพ — มาไว จบไว ค่าตอบแทนชัดเจน</p>
@@ -111,6 +164,13 @@
     <h2>ClinInsight คือใคร?</h2>
     <p>ClinInsight ทำหน้าที่เป็น <strong>Recruiter และตัวกลาง</strong> ในการเชื่อมต่อบุคลากรทางการแพทย์กับโปรเจควิจัยการตลาด (Market Research) จากบริษัทยาและองค์กร Healthcare ชั้นนำ</p>
     <p>งานของเราแตกต่างจากงานวิจัยทางวิชาการ (Academic Research) — เน้นโปรเจคระยะสั้น ตอบง่าย และมีค่าตอบแทนที่เป็นธรรมสำหรับเวลาของท่าน</p>
+    <!-- Banner image -->
+    <img
+      src="assets/ClinInsights_banner.png"
+      alt="ClinInsight — Platform for physician insights & healthcare market research"
+      class="banner-img"
+      onerror="this.style.display='none';"
+    />
   </div>
 
   <div class="card">
@@ -216,12 +276,34 @@
 
   <div class="contact-card">
     <h2>มีคำถามเพิ่มเติม?</h2>
-    <p>ติดต่อทีมงาน ClinInsight ได้ทาง LINE นี้ได้เลยค่ะ ยินดีตอบทุกคำถาม 🙏</p>
+    <p>ติดต่อทีมงาน ClinInsight ได้ทาง LINE หรือ Facebook ได้เลยค่ะ ยินดีตอบทุกคำถาม 🙏</p>
+    <div class="social-buttons">
+      <!-- LINE OA button -->
+      <a href="https://lin.ee/RkANhr0" target="_blank" rel="noopener" class="social-btn line">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+        </svg>
+        แอดไลน์ ClinInsight
+      </a>
+      <!-- Facebook button -->
+      <a href="https://www.facebook.com/profile.php?id=61589445774076" target="_blank" rel="noopener" class="social-btn facebook">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        Facebook ClinInsight
+      </a>
+    </div>
   </div>
 
 </div>
 
 <footer>
+  <img
+    src="assets/ClinInsights.png"
+    alt="ClinInsight"
+    class="footer-logo"
+    onerror="this.style.display='none';"
+  />
   <strong>ClinInsight</strong> — Physician Insights. Better Decisions.<br>
   <span style="margin-top:4px; display:block;">© 2025 ClinInsight. All rights reserved.</span>
 </footer>
